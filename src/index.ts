@@ -73,6 +73,7 @@ class BezierCurveApp {
     this.updateBezierCurve();
   }
 
+
   private onDragEnd() {
     delete this.currentDraggingPoint;
     delete this.dragTarget;
@@ -119,17 +120,23 @@ class BezierCurveApp {
       const progress = Math.min(1, startTime / ANIMATION_TIME);
       const point = bezier.getPointAt(progress);
       dot.position.copyFrom(point);
+        const diffX = point.x - previousPoint.x;
+        const diffY = point.y - previousPoint.y;
 
-      // points diff
+        const rad = Math.atan2(diffY, diffX);
+        // obliczenie ró¿nicy w k¹tach
+          dot.rotation = rad; 
+          dot.position.copyFrom(point);
 
-      if (progress >= 1) {
-        this.app.ticker.remove(onUpdate);
-      }
+          if (progress >= 1) {
+              dot.destroy();
+              this.app.ticker.remove(onUpdate);
+          }
 
-      previousPoint = point;
-    };
+          previousPoint = point;
+      };
 
-    this.app.ticker.add(onUpdate);
+      this.app.ticker.add(onUpdate);
   }
 }
 
@@ -140,3 +147,6 @@ declare global {
 }
 
 window.game = new BezierCurveApp();
+
+
+      //to run use game.start() in console
