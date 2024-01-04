@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "js",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strictPropertyInitialization": true,
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "newLine": "LF"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
